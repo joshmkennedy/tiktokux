@@ -4,6 +4,7 @@
 </script>
 
 <main>
+  <h1>Video Prototype</h1>
   <button on:click={() => (playerOn = !playerOn)}>
     click to watch videos</button
   >
