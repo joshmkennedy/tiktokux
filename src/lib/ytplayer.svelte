@@ -30,9 +30,6 @@
     player = event.detail.target;
     playerState = event.detail.target.getPlayerState();
     volumeState = event.detail.target.getVolume();
-
-    event.detail.target.setVolume(0);
-    volumeState = 0;
   }
 
   function handlePlayStateChange(event) {
