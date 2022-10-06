@@ -3,6 +3,8 @@
   import Controls from "./Controls.svelte";
   import Carousel from "./Carousel.svelte";
 
+  let vh = window.innerHeight * 0.01;
+
   const playlist = ["HEjusrpQ6qk", "nybwdbb1rG4", "oY7ROFdetNM", "HEjusrpQ6qk"];
   export let closePlayer: () => void;
   let curVidIndex = 0;
@@ -51,7 +53,10 @@
   let isDragging: boolean;
 </script>
 
-<div class="outer-wrapper" style={`--image-bg:url('${imageUrl}')`}>
+<div
+  class="outer-wrapper"
+  style={`--image-bg:url('${imageUrl}'); --vh:${vh}px`}
+>
   <div class="inner-wrapper blur">
     <Controls {closePlayer} {volumeState} {player} {nextVid} {prevVid} />
     <div>
@@ -88,7 +93,7 @@
     background-repeat: no-repeat;
     bottom: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     overflow: hidden;
   }
   .blur {
