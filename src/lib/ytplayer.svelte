@@ -3,8 +3,6 @@
   import Controls from "./Controls.svelte";
   import Carousel from "./Carousel.svelte";
 
-  let vh = window.innerHeight * 0.01;
-
   const playlist = ["HEjusrpQ6qk", "nybwdbb1rG4", "oY7ROFdetNM", "HEjusrpQ6qk"];
   export let closePlayer: () => void;
   let curVidIndex = 0;
@@ -53,28 +51,23 @@
   let isDragging: boolean;
 </script>
 
-<div
-  class="outer-wrapper"
-  style={`--image-bg:url('${imageUrl}'); --vh:${vh}px`}
->
+<div class="outer-wrapper" style={`--image-bg:url('${imageUrl}');`}>
   <div class="inner-wrapper blur">
     <Controls {closePlayer} {volumeState} {player} {nextVid} {prevVid} />
-    <div>
-      <div style="pointer-event:none" class="player-wrapper">
-        {#if playerState == 2}
-          <div class="play-icon-wrapper"><PlayArrow /></div>
-        {/if}
-        <Carousel
-          {player}
-          handleOnReady={handleReady}
-          handleOnEnd={replay}
-          handleOnPlayStateChange={handlePlayStateChange}
-          currentVidIndex={curVidIndex}
-          {playlist}
-          goToNext={nextVid}
-          goToPrev={prevVid}
-        />
-      </div>
+    <div class="player-wrapper">
+      {#if playerState == 2}
+        <div class="play-icon-wrapper"><PlayArrow /></div>
+      {/if}
+      <Carousel
+        {player}
+        handleOnReady={handleReady}
+        handleOnEnd={replay}
+        handleOnPlayStateChange={handlePlayStateChange}
+        currentVidIndex={curVidIndex}
+        {playlist}
+        goToNext={nextVid}
+        goToPrev={prevVid}
+      />
     </div>
   </div>
 </div>
@@ -85,13 +78,12 @@
   }
   .outer-wrapper {
     background-image: var(--image-bg);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    /* right: 0; */
     background-position: center;
     background-repeat: no-repeat;
-    bottom: 0;
     width: 100vw;
     height: calc(var(--vh) * 100);
     overflow: hidden;
@@ -104,6 +96,7 @@
   .inner-wrapper {
     width: 100%;
     height: 100%;
+    bottom: 0;
     position: absolute;
     display: grid;
     place-content: center;
@@ -117,9 +110,9 @@
   :global(:root body *) {
     box-sizing: inherit;
   }
-  :global(.yt-player) {
-    display: flex;
-  }
+  /* :global(.yt-player) { */
+  /*   display: flex; */
+  /* } */
   :global(iframe) {
     margin: 0;
     padding: 0;

@@ -101,30 +101,31 @@
     display: grid;
     grid-template: 1fr / 1fr;
     height: 100%;
+    max-height: 100svh;
     position: relative;
-    overflow: hidden;
+    /* overflow: auto; */
   }
   .slide {
     grid-area: 1/1;
     min-height: 100%;
     position: relative;
-    transform: translateY(var(--delta));
+    transform: translateY(var(--delta, 0));
   }
   .slide.currentSlide {
     z-index: 2;
   }
   .nextSlide {
-    transform: translateY(calc(var(--delta) + 100%));
+    transform: translateY(calc(var(--delta, 0) + 100%));
   }
   .prevSlide {
-    transform: translateY(calc(var(--delta) - 100%));
+    transform: translateY(calc(var(--delta, 0) - 65%));
   }
   :global(.slide.currentSlide > div) {
-    height: 100%;
+    height: 100svh;
     width: auto;
   }
   :global(.currentSlide iframe) {
-    inset: 0;
+    /* max-height: 100vh; */
     height: 100%;
     width: auto;
     aspect-ratio: 9/16;
