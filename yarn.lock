@@ -180,6 +180,11 @@ detect-indent@^6.0.0:
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-6.1.0.tgz#592485ebbbf6b3b1ab2be175c8393d04ca0d57e6"
   integrity sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==
 
+dragdroptouch-bug-fixed@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/dragdroptouch-bug-fixed/-/dragdroptouch-bug-fixed-1.0.8.tgz#9da55cdd4360a905d782c94f44a2f6df6bd9b780"
+  integrity sha512-moNgBeWMeUk4zhV3B+a4TZUPmHVJz+cvjWEXENLEU3toVnm3lpS+ZkSwVbBxArDUQ8HSm1qA0UmKWWy1y7nvng==
+
 es6-promise@^3.1.2:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
@@ -441,6 +446,11 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+javascript-interface-library@^0.1.5:
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/javascript-interface-library/-/javascript-interface-library-0.1.14.tgz#ed8f2a522e2655ecb5b2f05ad0b5b5b7650f6ecd"
+  integrity sha512-TSdQbLKqq6PcFk9M9Qk+l45rjqWfTMhSkvZVcByy1tKsDYDH+kblKu/FcVk4lWkeYXvcczX8NtPGdeyrZYEBrw==
+
 kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
@@ -676,6 +686,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+svelte-carousel-flickity@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/svelte-carousel-flickity/-/svelte-carousel-flickity-2.0.2.tgz#90b147df07735c0842bda8b283be92459ff257f4"
+  integrity sha512-Rra6MHI72vz4t13VSenMBoWSrsSRxzF47dmCl89nX2ffRW7M2HVi8AQdSRyDpU8gSdgI1aY5kHMqy3sdGACWIQ==
+
 svelte-check@^2.8.1:
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.9.1.tgz#9fa6998907996a07d3317c6a521d2c6e95c76c60"
@@ -689,6 +704,36 @@ svelte-check@^2.8.1:
     sade "^1.7.4"
     svelte-preprocess "^4.0.0"
     typescript "*"
+
+svelte-coordinate-conversion@^0.1.6:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/svelte-coordinate-conversion/-/svelte-coordinate-conversion-0.1.9.tgz#d7904408eac3e2f78fa078fa423b6adce889f086"
+  integrity sha512-9BBAoZ7U5psGxgYKd61DEFxou3MmWrW9xIGvgG1n+Jtg47ll/jpNYsiS8iy6fVu1Sfbq3TQF/cljqRKHwaOeeg==
+
+svelte-drag-and-drop-actions@^0.1.28:
+  version "0.1.35"
+  resolved "https://registry.yarnpkg.com/svelte-drag-and-drop-actions/-/svelte-drag-and-drop-actions-0.1.35.tgz#65f2d41d29f67c605f0b64f33ce82bcdd6e1707b"
+  integrity sha512-v2XtENssLfX5BE41E5653emXSTHd1hHtEXtB2k8PbTQ0jC0iB/WdEx9SwWesoKXRLcvLN7WLDVnmuSB3g3BIeg==
+  dependencies:
+    javascript-interface-library "^0.1.5"
+    svelte-coordinate-conversion "^0.1.6"
+    svelte-drag-and-drop-actions "^0.1.28"
+
+svelte-drag-and-drop-actions@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-drag-and-drop-actions/-/svelte-drag-and-drop-actions-1.0.0.tgz#530aecd74ca24b4d16968b9a82209e8592cc4ac0"
+  integrity sha512-L9KERCXLWKZGpmKoTEKFsXasfaKGFNC5ftV2Fjsbbndv8pmzGoR+JMnlbSXpOpFUAyOILAo6iT8RTaQW2KKh2g==
+  dependencies:
+    javascript-interface-library "^0.1.5"
+    svelte-coordinate-conversion "^0.1.6"
+    svelte-drag-and-drop-actions "^0.1.28"
+
+svelte-drag-drop-touch@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/svelte-drag-drop-touch/-/svelte-drag-drop-touch-0.1.9.tgz#eff2dccbdfdb56d3a165fdbd813d04bce87a392c"
+  integrity sha512-DWAMC+6xBRkl5OuVR7ze+znSKERlX9t9cx4/kzoWOnPwLFvv4g8YTtQxmO8wfWfETi9qgg/cnw58gmhZKY9vyw==
+  dependencies:
+    dragdroptouch-bug-fixed "^1.0.8"
 
 svelte-hmr@^0.15.0:
   version "0.15.0"
