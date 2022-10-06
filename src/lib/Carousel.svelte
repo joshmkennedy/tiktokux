@@ -118,7 +118,7 @@
     transform: translateY(calc(var(--delta, 0) + 100%));
   }
   .prevSlide {
-    transform: translateY(calc(var(--delta, 0) - 65%));
+    transform: translateY(calc(var(--delta, 0) - 100%));
   }
   :global(.slide.currentSlide > div) {
     height: 100svh;
