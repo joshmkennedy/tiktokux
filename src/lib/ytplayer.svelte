@@ -85,7 +85,7 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: calc(var(--vh) * 100);
+    height: 100svh;
     overflow: hidden;
   }
   .blur {
