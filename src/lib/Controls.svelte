@@ -97,8 +97,8 @@
 
 <style>
   .controls-right {
-    z-index: 3;
-    position: absolute;
+    z-index: 4;
+    position: fixed;
     right: 0;
     bottom: 0;
     height: 60%;

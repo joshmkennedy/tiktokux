@@ -9,6 +9,7 @@
   export let handleOnEnd: () => void;
   export let handleOnPlayStateUpdate: () => void;
   export let handleOnReady: () => void;
+  export let togglePlayState: () => void;
   export let player: any;
 
   $: currentVidIndex, console.log(currentVidIndex);
@@ -80,7 +81,7 @@
       <img src={getCoverArt(playlist[currentVidIndex - 1])} alt="" />
     </div>
   {/if}
-  <div class="slide currentSlide" style="pointer-events:none;">
+  <div class="slide currentSlide" on:click={togglePlayState}>
     <YouTube
       {options}
       on:end={handleOnEnd}
@@ -120,9 +121,15 @@
   .prevSlide {
     transform: translateY(calc(var(--delta, 0) - 100%));
   }
+  :global(.yt-player) {
+    position: relative;
+    z-index: 0;
+  }
   :global(.slide.currentSlide > div) {
     height: 100svh;
     width: auto;
+    z-index: 0;
+    pointer-events: none;
   }
   :global(.currentSlide iframe) {
     /* max-height: 100vh; */

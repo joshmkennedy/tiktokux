@@ -31,14 +31,17 @@
   function replay(event: any) {
     event.detail.target.playVideo(curVidId);
   }
-
+  $: playerState, console.log(playerState);
   function togglePlayState() {
+    console.log(playerState);
     if (playerState == 2) {
       // 2 equals paused
       player.playVideo();
+      playerState = 1;
       return;
     }
     player.pauseVideo();
+    playerState = 2;
   }
 
   function nextVid() {
@@ -60,6 +63,7 @@
       {/if}
       <Carousel
         {player}
+        {togglePlayState}
         handleOnReady={handleReady}
         handleOnEnd={replay}
         handleOnPlayStateChange={handlePlayStateChange}
@@ -118,7 +122,7 @@
     padding: 0;
   }
   .play-icon-wrapper {
-    z-index: 2;
+    z-index: 9;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
