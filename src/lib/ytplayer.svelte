@@ -22,8 +22,6 @@
     //TODO: please remove this
     volumeState = 0;
     event.detail.target.setVolume(0);
-
-    event.detail.target.click();
   }
 
   function handlePlayStateChange(event: any) {
