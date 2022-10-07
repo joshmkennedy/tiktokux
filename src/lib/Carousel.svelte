@@ -21,6 +21,7 @@
     playerVars: {
       autoplay: 1,
       controls: 0,
+      playsinline: 1,
     },
   };
 
