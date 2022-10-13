@@ -6,11 +6,10 @@
   export let goToPrev: () => void;
   export let goToNext: () => void;
   export let currentVidIndex: number = 0;
-  export let handleOnEnd: () => void;
-  export let handleOnPlayStateUpdate: () => void;
-  export let handleOnReady: () => void;
+  export let handleOnEnd: (e: any) => void;
+  export let handleOnPlayStateChange: (e: any) => void;
+  export let handleOnReady: (e: any) => void;
   export let togglePlayState: () => void;
-  export let player: any;
 
   $: currentVidIndex, console.log(currentVidIndex);
 
@@ -22,6 +21,8 @@
       autoplay: 1,
       controls: 0,
       playsinline: 1,
+      enablejsapi: 1,
+      modestbranding: 1,
     },
   };
 
@@ -86,7 +87,7 @@
     <YouTube
       {options}
       on:end={handleOnEnd}
-      on:stateChange={handleOnPlayStateUpdate}
+      on:stateChange={handleOnPlayStateChange}
       on:ready={handleOnReady}
       videoId={playlist[currentVidIndex]}
     />
@@ -110,8 +111,10 @@
   .slide {
     grid-area: 1/1;
     min-height: 100%;
+    height: 100%;
     position: relative;
     transform: translateY(var(--delta, 0));
+    /* overflow: hidden; */
   }
   .slide.currentSlide {
     z-index: 2;
@@ -132,12 +135,15 @@
     z-index: 0;
     pointer-events: none;
   }
-  :global(.currentSlide iframe) {
+  :global(.currentSlide iframe),
+  .slide img {
     /* max-height: 100vh; */
     height: 100%;
     width: auto;
     aspect-ratio: 9/16;
-
     /* aspect-ratio: 219 / 390; */
+  }
+  .slide img {
+    object-fit: cover;
   }
 </style>

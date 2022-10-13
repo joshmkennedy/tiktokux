@@ -62,13 +62,12 @@
         <div class="play-icon-wrapper"><PlayArrow /></div>
       {/if}
       <Carousel
-        {player}
         {togglePlayState}
+        {playlist}
         handleOnReady={handleReady}
         handleOnEnd={replay}
         handleOnPlayStateChange={handlePlayStateChange}
         currentVidIndex={curVidIndex}
-        {playlist}
         goToNext={nextVid}
         goToPrev={prevVid}
       />
@@ -114,9 +113,6 @@
   :global(:root body *) {
     box-sizing: inherit;
   }
-  /* :global(.yt-player) { */
-  /*   display: flex; */
-  /* } */
   :global(iframe) {
     margin: 0;
     padding: 0;
@@ -128,5 +124,6 @@
     transform: translate(-50%, -50%);
     position: absolute;
     filter: drop-shadow(0 2px 8px rgb(0 0 0 / 60%));
+    pointer-events: none;
   }
 </style>

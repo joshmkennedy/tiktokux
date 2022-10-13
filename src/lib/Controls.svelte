@@ -3,6 +3,7 @@
   import CloseX from "./closeX.svelte";
   import Soundoff from "./soundoff.svelte";
   import Soundon from "./soundon.svelte";
+  import SuButton from "./SuButton.svelte";
 
   export let closePlayer = () => console.log("need to pass closePlayerFunc");
   export let player: any;
@@ -46,6 +47,7 @@
     class="icon-button round"
     on:click|capture|stopPropagation={closePlayer}><CloseX /></button
   >
+  <SuButton channelid="UCkkztuiHDPQ7YpPSeG71r8w" />
 </div>
 
 <div class="controls-right">
@@ -120,6 +122,9 @@
     left: 0;
     width: 100%;
     padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   button {
     background: #efefef22;
