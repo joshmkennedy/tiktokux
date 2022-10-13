@@ -1,6 +1,5 @@
 <script lang="ts">
   import YouTube from "svelte-youtube";
-  import { onMount } from "svelte";
 
   export let playlist: string[];
   export let goToPrev: () => void;
@@ -34,21 +33,21 @@
     return "ontouchstart" in window || navigator.maxTouchPoints > 0;
   }
 
-  function handlePointerDown(event) {
+  function handlePointerDown(event: any) {
     isDragging = true;
     delta = 0;
     lastPos = event.clientY;
   }
-  function handlePointerMove(event) {
+  function handlePointerMove(_: any) {
     if (isTouchDevice()) return; //only should fire if touch is not supported
   }
-  function handleTouchMove(event) {
+  function handleTouchMove(event: any) {
     const curY = event.touches[0].clientY;
     delta += curY - lastPos;
     lastPos = curY;
   }
 
-  function handlePointerUp(event) {
+  function handlePointerUp(_: any) {
     isDragging = false;
     if (Math.abs(delta) > 40) {
       const action = delta > 0 ? goToPrev : goToNext;
@@ -58,10 +57,10 @@
     lastPos = 0;
     delta = 0;
   }
-  function handlePointerLeave(event) {
+  function handlePointerLeave(_: any) {
     isDragging = false;
   }
-  function getCoverArt(id) {
+  function getCoverArt(id: string) {
     if (id) {
       return `https://i3.ytimg.com/vi/${id}/maxresdefault.jpg`;
     }
