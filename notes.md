@@ -7,4 +7,4 @@
 ## Re achitecture (1) the app.
 
 - put the the player component inside the carousel.
--
+- lets add a svelte store

@@ -4,26 +4,23 @@
   import Soundoff from "./soundoff.svelte";
   import Soundon from "./soundon.svelte";
   import SuButton from "./SuButton.svelte";
+  import { player, volumeState, nextVidIndex, prevVidIndex } from "../store";
 
   export let closePlayer = () => console.log("need to pass closePlayerFunc");
-  export let player: any;
-  export let prevVid: () => void;
-  export let nextVid: () => void;
-  export let volumeState: number;
 
   let displayVolume = false;
   let rangeTimeout = null;
 
   function toggleSound() {
-    let newVolume = volumeState == 0 ? 100 : 0;
-    player.setVolume(newVolume);
-    volumeState = newVolume;
+    let newVolume = $volumeState == 0 ? 100 : 0;
+    $player.setVolume(newVolume);
+    volumeState.update(() => newVolume);
   }
 
   function handleVolumeRange(event: any) {
     const val = event.target.value;
-    player.setVolume(val);
-    volumeState = val;
+    $player.setVolume(val);
+    volumeState.update(() => val);
   }
 
   function showVolumeRange() {
@@ -52,10 +49,13 @@
 
 <div class="controls-right">
   <div class="playlist-navigation">
-    <button class="icon-button round" on:click|capture|stopPropagation={prevVid}
-      ><Arrow dir="up" /></button
+    <button
+      class="icon-button round"
+      on:click|capture|stopPropagation={prevVidIndex}><Arrow dir="up" /></button
     >
-    <button class="icon-button round" on:click|stopPropagation|capture={nextVid}
+    <button
+      class="icon-button round"
+      on:click|stopPropagation|capture={nextVidIndex}
       ><Arrow dir="down" /></button
     >
   </div>
@@ -74,7 +74,7 @@
             handleVolumeRange(event);
             hideRangeAfter(5000);
           }}
-          bind:value={volumeState}
+          bind:value={$volumeState}
           min="0"
           max="100"
           step="10"
@@ -88,7 +88,7 @@
         hideRangeAfter(5000);
       }}
     >
-      {#if volumeState == 0}
+      {#if $volumeState == 0}
         <Soundoff />
       {:else}
         <Soundon />

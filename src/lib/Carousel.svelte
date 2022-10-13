@@ -1,31 +1,30 @@
 <script lang="ts">
-  import YouTube from "svelte-youtube";
+  import Player from "./Player.svelte";
+  import {
+    playlist,
+    curVidIndex,
+    playerState,
+    player,
+    nextVidIndex,
+    prevVidIndex,
+    prevVidId,
+    nextVidId,
+  } from "../store";
+  import { getCoverArt } from "../utils";
 
-  export let playlist: string[];
-  export let goToPrev: () => void;
-  export let goToNext: () => void;
-  export let currentVidIndex: number = 0;
-  export let handleOnEnd: (e: any) => void;
-  export let handleOnPlayStateChange: (e: any) => void;
-  export let handleOnReady: (e: any) => void;
-  export let togglePlayState: () => void;
+  function togglePlayState() {
+    console.log(playerState);
+    if ($playerState == 2) {
+      // 2 equals paused
+      $player.playVideo();
+      playerState.update(() => 1);
+      return;
+    }
+    $player.pauseVideo();
+    playerState.update(() => 2);
+  }
 
-  $: currentVidIndex, console.log(currentVidIndex);
-
-  const options = {
-    height: "390",
-    width: "219",
-    //  see https://developers.google.com/youtube/player_parameters
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      playsinline: 1,
-      enablejsapi: 1,
-      modestbranding: 1,
-    },
-  };
-
-  export let isDragging = false;
+  let isDragging = false;
   let delta: number = 0;
   let lastPos = 0;
 
@@ -50,7 +49,7 @@
   function handlePointerUp(_: any) {
     isDragging = false;
     if (Math.abs(delta) > 40) {
-      const action = delta > 0 ? goToPrev : goToNext;
+      const action = delta > 0 ? prevVidIndex : nextVidIndex;
       console.log(action);
       action();
     }
@@ -59,12 +58,6 @@
   }
   function handlePointerLeave(_: any) {
     isDragging = false;
-  }
-  function getCoverArt(id: string) {
-    if (id) {
-      return `https://i3.ytimg.com/vi/${id}/maxresdefault.jpg`;
-    }
-    return null;
   }
 </script>
 
@@ -77,23 +70,17 @@
   on:pointerup|capture|preventDefault={handlePointerUp}
   on:pointerleave|capture|preventDefault={handlePointerLeave}
 >
-  {#if currentVidIndex != 0}
+  {#if $curVidIndex != 0}
     <div class="prevSlide slide">
-      <img src={getCoverArt(playlist[currentVidIndex - 1])} alt="" />
+      <img src={getCoverArt($prevVidId)} alt="" />
     </div>
   {/if}
   <div class="slide currentSlide" on:click={togglePlayState}>
-    <YouTube
-      {options}
-      on:end={handleOnEnd}
-      on:stateChange={handleOnPlayStateChange}
-      on:ready={handleOnReady}
-      videoId={playlist[currentVidIndex]}
-    />
+    <Player />
   </div>
-  {#if currentVidIndex < playlist.length}
+  {#if $curVidIndex < playlist.length}
     <div class="slide nextSlide">
-      <img src={getCoverArt(playlist[currentVidIndex + 1])} alt="" />
+      <img src={getCoverArt($nextVidId)} alt="" />
     </div>
   {/if}
 </div>

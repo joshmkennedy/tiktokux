@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Player from "./lib/ytplayer.svelte";
-  import Carousel from "./lib/Carousel.svelte";
+  import PlaylistPlayer from "./lib/PlaylistOverlay.svelte";
   let playerOn = false;
 
   const slides = ["a", "b", "c", "d"];
@@ -21,7 +20,7 @@
     click to watch videos</button
   >
   <!-- {#if playerOn} -->
-  <Player closePlayer={() => (playerOn = !playerOn)} />
+  <PlaylistPlayer closePlayer={() => (playerOn = !playerOn)} />
   <!-- {/if} -->
   <!-- <Carousel -->
   <!--   curSlide={slides[curSlideId]} -->
