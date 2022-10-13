@@ -50,7 +50,6 @@
     isDragging = false;
     if (Math.abs(delta) > 40) {
       const action = delta > 0 ? prevVidIndex : nextVidIndex;
-      console.log(action);
       action();
     }
     lastPos = 0;
