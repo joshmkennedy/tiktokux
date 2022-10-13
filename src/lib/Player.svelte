@@ -1,14 +1,12 @@
 <script lang="ts">
   import YouTube from "svelte-youtube";
   import { player, playerState, volumeState, curVidId } from "../store";
-
+  let el;
   function handleReady(event: any) {
     let playState = event.detail.target.getPlayerState();
-    if (playState == 2) {
-      event.detail.target.playVideo();
-      playState = 1;
-    }
     player.update(() => event.detail.target);
+
+    // $player.playVideo();
     playerState.update(() => playState);
     volumeState.update(() => event.detail.target.getVolume());
     //TODO: please remove this
@@ -24,7 +22,6 @@
   const options = {
     height: "390",
     width: "219",
-    //  see https://developers.google.com/youtube/player_parameters
     playerVars: {
       autoplay: 1,
       controls: 0,
@@ -36,6 +33,7 @@
 </script>
 
 <YouTube
+  bind:this={el}
   {options}
   videoId={$curVidId}
   on:ready={handleReady}
