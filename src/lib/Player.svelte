@@ -3,8 +3,13 @@
   import { player, playerState, volumeState, curVidId } from "../store";
 
   function handleReady(event: any) {
+    let playState = event.detail.target.getPlayerState();
+    if (playState == 2) {
+      event.detail.target.playVideo();
+      playState = 1;
+    }
     player.update(() => event.detail.target);
-    playerState.update(() => event.detail.target.getPlayerState());
+    playerState.update(() => playState);
     volumeState.update(() => event.detail.target.getVolume());
     //TODO: please remove this
   }
