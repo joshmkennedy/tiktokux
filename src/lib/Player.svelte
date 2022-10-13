@@ -1,18 +1,16 @@
 <script lang="ts">
   import YouTube from "svelte-youtube";
-  import { curVidId } from "../store";
+  import { player, playerState, volumeState, curVidId } from "../store";
 
   function handleReady(event: any) {
-    player = event.detail.target;
-    playerState = event.detail.target.getPlayerState();
-    volumeState = event.detail.target.getVolume();
+    player.update(() => event.detail.target);
+    playerState.update(() => event.detail.target.getPlayerState());
+    volumeState.update(() => event.detail.target.getVolume());
     //TODO: please remove this
-    volumeState = 0;
-    event.detail.target.setVolume(0);
   }
 
   function handlePlayStateChange(event: any) {
-    playerState = event.detail.target.getPlayerState();
+    playerState.update(() => event.detail.target.getPlayerState());
   }
 
   function replay(event: any) {

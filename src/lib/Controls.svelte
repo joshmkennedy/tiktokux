@@ -12,12 +12,14 @@
   let rangeTimeout = null;
 
   function toggleSound() {
+    if (!$player) return;
     let newVolume = $volumeState == 0 ? 100 : 0;
     $player.setVolume(newVolume);
     volumeState.update(() => newVolume);
   }
 
   function handleVolumeRange(event: any) {
+    if (!$player) return;
     const val = event.target.value;
     $player.setVolume(val);
     volumeState.update(() => val);

@@ -13,7 +13,7 @@
   import { getCoverArt } from "../utils";
 
   function togglePlayState() {
-    console.log(playerState);
+    if (!$player) return;
     if ($playerState == 2) {
       // 2 equals paused
       $player.playVideo();
